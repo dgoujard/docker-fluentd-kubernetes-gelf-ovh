@@ -1,35 +1,40 @@
-apiVersion: v1
-kind: Pod
+apiVersion: extensions/v1beta1
+kind: DaemonSet
 metadata:
    name: fluentd-gelf
    namespace: default
 labels:
    k8s-app: fluentd-gelf
 spec:
-   containers:
-   - name: docker-fluentd-kubernetes-gelf
-     image: damien/docker-fluentd-kubernetes-gelf-ovh
-     imagePullPolicy: Always
-     env:
-       - name: OVH_TOKEN
-         value: "TOKEN OVH ICI"
-     volumeMounts:
-       - name: varlog
-         mountPath: /var/log
-       - name: varlibdockercontainers
-         mountPath: /var/lib/docker/containers
-     readOnly: true
-     terminationGracePeriodSeconds: 30
-     Resources:
-      limits:
-         memory: 200Mi
-      Requests:
-         cpu: 100m
-         memory: 200Mi
-   volumes:
-     - name: varlog
-       hostPath:
-        path: /var/log
-     - name: varlibdockercontainers
-       hostPath:
-        path: /var/lib/docker/containers
+   template:
+      metadata:
+       labels:
+         name: fluentd-gelf
+      spec:
+       containers:
+       - name: docker-fluentd-kubernetes-gelf
+         image: damien/docker-fluentd-kubernetes-gelf-ovh
+         imagePullPolicy: Always
+         env:
+           - name: OVH_TOKEN
+             value: "TOKEN OVH ICI"
+         volumeMounts:
+           - name: varlog
+             mountPath: /var/log
+           - name: varlibdockercontainers
+             mountPath: /var/lib/docker/containers
+         readOnly: true
+         terminationGracePeriodSeconds: 30
+         Resources:
+          limits:
+             memory: 200Mi
+          Requests:
+             cpu: 100m
+             memory: 200Mi
+       volumes:
+         - name: varlog
+           hostPath:
+            path: /var/log
+         - name: varlibdockercontainers
+           hostPath:
+            path: /var/lib/docker/containers
