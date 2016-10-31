@@ -30,8 +30,6 @@ spec:
       Requests:
          cpu: 100m
          memory: 200Mi
-   imagePullSecrets:
-     - name: actigraphregistrycred
    volumes:
      - name: varlog
        hostPath:
