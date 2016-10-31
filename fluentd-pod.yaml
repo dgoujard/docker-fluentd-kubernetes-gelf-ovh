@@ -13,10 +13,6 @@ spec:
      env:
        - name: OVH_TOKEN
          value: "TOKEN OVH ICI"
-       - name: GELF_HOST
-         value: "laas.runabove.com"
-       - name: GELF_PORT
-         value: "12202"
      volumeMounts:
        - name: varlog
          mountPath: /var/log
