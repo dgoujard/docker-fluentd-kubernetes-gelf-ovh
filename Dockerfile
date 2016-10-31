@@ -1,7 +1,5 @@
 FROM fabric8/fluentd:0.14.8
 
-MAINTAINER Gilbert Roulot <gilbert.roulot@tech-angels.com>
-
 ENTRYPOINT ["fluentd"]
 
 RUN yum install -y curl-dev wget gcc-c++
