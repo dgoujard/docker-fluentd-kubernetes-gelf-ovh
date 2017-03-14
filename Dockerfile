@@ -8,7 +8,7 @@ RUN scl enable rh-ruby23 'gem install fluent-plugin-kubernetes_metadata_filter f
 
 RUN mkdir -p /etc/fluent/plugin
 
-ENV GELF_HOST laas.runabove.com
+ENV GELF_HOST discover.logs.ovh.com
 ENV GELF_PORT 12202
 ENV GELF_PROTOCOL tcp
 ENV GELF_TLS true
